@@ -7,21 +7,23 @@ html {
 }
 
 :root {
-  --bg: #ffffff;
-  --fg: #1f2937; /* slate-800 */
-  --muted: #6b7280; /* slate-500 */
-  --edge: #e5e7eb; /* slate-200 */
-  --soft: #f8fafc; /* slate-50 */
-  --accent: #2563eb; /* blue-600 */
+  /* Light mode */
+  --bg: #f9fbf9; /* nästan vit med hint av grönt */
+  --fg: #1f2e1f; /* mörkgrön text */
+  --muted: #6b7c6b; /* dämpad grågrön för sekundär text */
+  --edge: #d9e4da; /* ljusgrön-grå kantlinje */
+  --soft: #eef5ef; /* mjuk bakgrundsyta */
+  --accent: #3b9d62; /* klar men mjuk accentgrön */
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0b1020;
-    --fg: #e5e7eb;
-    --muted: #9aa0aa;
-    --edge: #1f2a44;
-    --soft: #0f172a;
-    --accent: #60a5fa;
+    --bg: #1e2620; /* ljusare mossgrön bakgrund (inte kolsvart) */
+    --fg: #e8f2ea; /* ljusgrön-vit text */
+    --muted: #a9b8ad; /* mjuk grågrön sekundär */
+    --edge: #3a4b40; /* mild mörkgrön kant */
+    --soft: #2a352e; /* mjuk panelbakgrund, lite ljusare */
+    --accent: #57c07c; /* fräsch mint/emeraldgrön accent */
   }
 }
 
@@ -153,10 +155,29 @@ main {
 .hero .accent {
   color: var(--accent);
 }
-.hero-media img {
-  border-radius: 0.75rem;
-  max-width: 420px;
+
+.hero > * {
+  min-width: 0;
 }
+.hero-media {
+  min-width: 0; /* får krympa under intrinsic bredd */
+  width: 100%;
+  max-width: 520px; /* valfri övre gräns på desktop */
+  justify-self: center; /* centrerar på smala skärmar */
+}
+.hero-media img {
+  display: block;
+  width: 100%; /* fyll wrappern */
+  height: auto; /* behåll proportioner */
+  max-width: none; /* överstyr global max-width om nödvändigt */
+}
+
+.hero-media img {
+  width: 100%;
+  height: auto;
+  max-width: clamp(240px, 45vw, 420px);
+}
+
 @media (min-width: 900px) {
   .hero {
     grid-template-columns: 1.2fr 0.8fr;
